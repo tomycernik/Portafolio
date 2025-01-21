@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title>
+
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="#home" class="active">Inicio</a></li>
+                <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#portfolio">Portafolio</a></li>
+                <li><a href="#education">Educación</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <!-- Sección Home -->
+            <section id="home" class="section">
+                <h1>Tomás Cernik</h1>
+                <h3>Bienvenido a mi portafolio como Diseñador Web</h3>
+                <p>Si querés ponerte en contacto conmigo, escribime a este mail <a href="mailto:cerniktomy@gmail.com">cerniktomy@gmail.com</a></p>
+                
+                <a href="TomasCernikCV_2024.pdf" download="Tomás Cernik - CV.pdf">
+                    <button>DESCARGA MI CV</button>
+                </a>
+                <div class="links">
+                    <a href="https://www.linkedin.com/in/tomycernik" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a> |
+                    <a href="https://github.com/tomycernik" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </section>
+            
+            <section id="about" class="section">
+                <h1>Sobre mí</h1>
+                <p class="sobremi">Soy estudiante de la tecnicatura en Desarrollo Web en la Universidad de La Matanza, 
+                    donde aprendí a trabajar en equipo y a gestionar proyectos. Por mi cuenta, desarrollé 
+                    un CRM dedicado a la gestión de ventas, estadísticas de productos y vendedores, con 
+                    múltiples filtros de búsqueda. Además, estoy haciendo un curso de Google en análisis 
+                    de datos para complementar mis conocimientos y seguir mejorando en el ámbito del 
+                    desarrollo web y análisis de información.</p>
+                <h3>Actualmente estudio y busco ampliar mi experiencia laboral como Desarrollador Web</h3>
+            </section>
+            <section id="portfolio" class="section">
+                <h1>Portafolio</h1>
+                <div class="project-container">
+                    <div class="project-card">
+                        <h3>CRM Essenza Divina</h3>
+                        <div class="project-description">
+                            <p>Un CRM dedicado a la gestión de ventas, estadísticas de productos y vendedores, con múltiples filtros de búsqueda</p>
+                        </div>
+                        <div class="technologies">
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
+                            <span class="tech">PHP</span>
+                            <span class="tech">Mustache</span>
+                        </div>
+                        <a href="https://github.com/tomycernik/EssenzaCRM.git" class="github-link">Ver en GitHub</a>
+                    </div>
+            
+                    <div class="project-card">
+                        <h3>API para clasificación de Emails</h3>
+                        <div class="project-description">
+                            <p>Solución de IA para clasificar emails según urgencia.</p>
+                        </div>
+                        <div class="technologies">
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
+                            <span class="tech">C#</span>
+                        </div>
+                        <a href="https://github.com/Ignacio26fr/Tasky_webProyecto.git" class="github-link">Ver en GitHub</a>
+                    </div>
+            
+                    <div class="project-card">
+                        <h3>Preguntados</h3>
+                        <div class="project-description">
+                            <p> Juego de trivia simulando al juego "Preguntados"</p>
+                        </div>
+                        <div class="technologies">
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
+                            <span class="tech">PHP</span>
+                            <span class="tech">Mustache</span>
+                        </div>
+                        <a href="https://github.com/matiigodoy/TPFinal-Grupo21.git" class="github-link">Ver en GitHub</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>E-Commerce de apuntes estudiantiles</h3>
+                        <div class="project-description">
+                            <p> Un E-Commerce completo para la compra y venta de apuntes estudiantiles manejando una moneda virtual</p>
+                        </div>
+                        <div class="technologies">
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                            <span class="tech">JavaScript</span>
+                            <span class="tech">Java</span>
+                            <span class="tech">Spring</span>
+                        </div>
+                        <a href="https://github.com/Gaby137/TallerWeb1.git" class="github-link">Ver en GitHub</a>
+                    </div>
+                </div>
+            </section>
+            <section id="education" class="section">
+                <h2>Educación</h2>
+                <div class="education-item">
+                    <h3>Tecnicatura en Desarrollo Web</h3>
+                    <p>Universidad de La Matanza | Desde abril de 2022 - En curso</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%;"></div> <!-- 75% de progreso -->
+                    </div>
+                </div>
+                <div class="education-item">
+                    <h3>Curso de Análisis de Datos</h3>
+                    <p>Google | Comenzado en enero de 2025 - En curso</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 25%;"></div> <!-- 25% de progreso -->
+                    </div>
+                </div>
+            </section>
+            
+            <section id="skills" class="section">
+                <h2>Skills</h2>
+            
+                <div class="skills-container">
+                    <div class="skills-category">
+                        <h3>Lenguajes</h3>
+                        <ul>
+                            <li>Java</li>
+                            <li>PHP</li>
+                            <li>SQL</li>
+                            <li>C#</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                        </ul>
+                    </div>
+            
+                    <div class="skills-category">
+                        <h3>Frameworks</h3>
+                        <ul>
+                            <li>Spring</li>
+                            <li>Hibernate</li>
+                            <li>Thymeleaf</li>
+                            <li>Modelo Vista Controlador (MVC)</li>
+                        </ul>
+                    </div>
+            
+                    <div class="skills-category">
+                        <h3>Software</h3>
+                        <ul>
+                            <li>IntelliJ IDEA</li>
+                            <li>PhpStorm</li>
+                            <li>PhpMyAdmin</li>
+                            <li>MySQL Workbench</li>
+                            <li>MariaDB</li>
+                            <li>Visual Studio</li>
+                            <li>Visual Studio Code</li>
+                            <li>Excel</li>
+                            <li>Draw.io</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="contact" class="section">
+                <h2>Contacto</h2>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <a href="mailto:cerniktomy@gmail.com" target="_blank">
+                            <img src="https://img.icons8.com/?size=100&id=P7UIlhbpWzZm&format=png&color=000000" alt="Gmail Logo" />
+                            cerniktomy@gmail.com
+                        </a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <a href="https://github.com/tomycernik" target="_blank">
+                            <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub Logo" />
+                            https://github.com/tomycernik
+                        </a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <a href="https://www.linkedin.com/in/tomas-cernik-51371b250" target="_blank">
+                            <img src="https://img.icons8.com/ios-filled/50/0077B5/linkedin.png" alt="LinkedIn Logo" />
+                            www.linkedin.com/in/tomas-cernik-51371b250
+                        </a>
+                    </div>
+                </div>
+            </section>
+             
+        </div>
+    </div>
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
