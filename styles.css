@@ -1,3 +1,4 @@
+/* Estilos generales */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -15,16 +16,16 @@ body {
     width: 100%;
 }
 
-/* Menú lateral */
+/* Menú lateral (desktop) */
 .sidebar {
-    background: #333;
-    color: #fff;
-    width: 15%;
-    padding: 20px;
-    box-sizing: border-box;
+    width: 250px; /* Ajusta el ancho */
     position: fixed;
-    height: 100vh;
-    transition: width 0.3s ease;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #333;
+    color: #fff;
+    transition: transform 0.3s ease; /* Para transición en móvil usaremos transform */
 }
 
 .sidebar ul {
@@ -38,6 +39,8 @@ body {
 }
 
 .sidebar ul li a {
+    display: block;              /* Hace que el enlace ocupe toda la línea */
+    padding: 10px 20px;          /* 10px arriba y abajo, 20px a la izquierda y derecha */
     color: #fff;
     text-decoration: none;
     font-size: 1.2rem;
@@ -52,12 +55,12 @@ body {
     color: #00bcd4;
 }
 
-/* Contenido principal */
+/* Contenido principal (desktop) */
 .content {
     width: 85%;
     overflow-y: scroll;
     scroll-behavior: smooth;
-    margin-left: 15%;
+    margin-left: 250px; /* Sin margen blanco */
     transition: margin-left 0.3s ease;
 }
 
@@ -344,7 +347,7 @@ button:hover {
 .contact-item img {
     width: 30px;
     height: 30px;
-    vertical-align: middle; /* Alinea el logo verticalmente con el texto */
+    vertical-align: middle;
     transition: transform 0.3s ease;
 }
 
@@ -354,28 +357,26 @@ button:hover {
 }
 
 .contact-item img:hover {
-    transform: scale(1.1); /* Efecto de aumento de tamaño al pasar el cursor */
+    transform: scale(1.1);
 }
 
+/* Media queries */
+/* Para escritorio mediano */
 @media (max-width: 1024px) {
     .sidebar {
         width: 20%;
     }
-
     .content {
         width: 80%;
         margin-left: 20%;
     }
-
     .skills-container {
         flex-wrap: wrap;
         justify-content: center;
     }
-
     .skills-category {
         width: 45%;
     }
-
     .contact-info {
         flex-direction: column;
         align-items: flex-start;
@@ -383,115 +384,108 @@ button:hover {
     }
 }
 
+/* Versión móvil: overlay del menú */
 @media (max-width: 768px) {
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        padding: 10px 20px;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1200;
     }
-
-    .sidebar ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
+    .sidebar.open {
+        transform: translateX(0);
     }
-
-    .sidebar ul li {
-        margin: 10px;
-    }
-
+    /* El contenido ocupa siempre el 100% para evitar margen blanco */
     .content {
         width: 100%;
         margin-left: 0;
     }
-
-    .skills-category {
-        width: 100%;
+    /* Botón hamburguesa: posición inicial en la esquina superior izquierda */
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background-color: #333;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        z-index: 1300;
+        transition: all 0.3s ease;
     }
-
-    .project-card {
-        max-width: 100%;
-    }
-
-    .section p {
-        margin: 20px 20px;
-    }
-
-    .contact-info {
-        flex-direction: column;
-        gap: 15px;
-        align-items: flex-start;
-        margin-left: 0;
-    }
-
-    h1 {
-        font-size: 2.2em;
-    }
-
-    h2 {
-        font-size: 1.8em;
+    /* Cuando se abra el menú, reposicionar el botón en la esquina superior derecha */
+    .menu-toggle.open {
+        left: auto;
+        right: 15px;
     }
 }
 
+/* Para pantallas muy pequeñas (max-width: 480px) */
 @media (max-width: 480px) {
     .sidebar {
         padding: 10px;
     }
-
     .sidebar ul {
         flex-direction: column;
         align-items: center;
     }
-
     .sidebar ul li {
         margin: 5px 0;
     }
-
     .section {
         padding: 20px 10px;
     }
-
     .skills-container {
         flex-direction: column;
         gap: 10px;
     }
-
     .skills-category {
         width: 100%;
     }
-
     .section p {
         margin: 10px;
         font-size: 1em;
     }
-
     .education-item {
         padding: 15px;
     }
-
     .contact-item {
         font-size: 1em;
     }
-
     h1 {
         font-size: 1.8em;
     }
-
     h2 {
         font-size: 1.4em;
     }
-
     button {
         padding: 8px 15px;
         font-size: 0.9rem;
     }
-
     .project-card {
         padding: 15px;
     }
 }
 
-
-
-
+@media (min-width: 768px) {
+    .menu-toggle {
+      display: none !important;
+    }
+    /* También reiniciamos cualquier transformación de la sidebar para mostrarla siempre */
+    .sidebar {
+      transform: none !important;
+      width: 250px;
+    }
+    /* Y establecemos el margen adecuado en el contenido */
+    .content {
+      margin-left: 250px !important;
+      width: calc(100% - 250px);
+    }
+  }
+  

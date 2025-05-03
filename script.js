@@ -1,39 +1,53 @@
-// Obtener enlaces del menú y secciones
-const links = document.querySelectorAll('.sidebar ul li a');
-const sections = document.querySelectorAll('.section');
-
-// Función para actualizar el menú activo al hacer scroll
-function updateActiveLink() {
-    let currentSection = null;
-
-    // Identificar la sección actualmente visible
-    sections.forEach((section) => {
+// Esperamos a que se cargue el DOM
+document.addEventListener('DOMContentLoaded', () => {
+    const content = document.querySelector('.content');
+    const links = document.querySelectorAll('.sidebar ul li a');
+    const sections = document.querySelectorAll('.section');
+    const threshold = 150; // Umbral en pixeles para determinar la sección activa
+  
+    function updateActiveLink() {
+      let currentId = "";
+  
+      // Obtenemos el scroll actual del contenedor '.content'
+      const scrollTop = content.scrollTop;
+  
+      sections.forEach(section => {
+        // offsetTop de la sección (relativo al contenedor)
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
-
-        if (window.scrollY >= sectionTop - sectionHeight / 3) {
-            currentSection = section.getAttribute("id");
+        
+        // Si scrollTop está dentro de la sección (ajustando con el threshold)
+        if (scrollTop >= sectionTop - threshold &&
+            scrollTop < sectionTop + sectionHeight - threshold) {
+          currentId = section.getAttribute('id');
         }
-    });
-
-    // Actualizar las clases activas en el menú
-    links.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("href").substring(1) === currentSection) {
-            link.classList.add("active");
+      });
+  
+      // Actualizamos los enlaces del menú según el id encontrado
+      links.forEach(link => {
+        if (link.getAttribute('href') === '#' + currentId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
         }
-    });
-}
+      });
+    }
+  
+    // Attach the scroll event to the .content container
+    content.addEventListener('scroll', updateActiveLink);
+    
+    // Actualizamos una vez al cargar la página
+    updateActiveLink();
+  });
+  
+const sidebar = document.querySelector(".sidebar");
+const menuToggle = document.querySelector(".menu-toggle");
 
-// Función para el scroll suave al hacer clic en un enlace
-links.forEach((link) => {
-    link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute("href").substring(1);
-        const targetSection = document.getElementById(targetId);
-        targetSection.scrollIntoView({ behavior: "smooth" });
-    });
+menuToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    menuToggle.classList.toggle("open");
 });
 
-// Escuchar eventos de scroll para actualizar el menú activo
-window.addEventListener("scroll", updateActiveLink);
+
+
+
