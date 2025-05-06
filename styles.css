@@ -1,4 +1,4 @@
-/* Estilos generales */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -8,7 +8,7 @@ body {
     overflow: hidden;
 }
 
-/* Contenedor principal */
+
 .container {
     display: flex;
     flex-direction: column;
@@ -16,16 +16,16 @@ body {
     width: 100%;
 }
 
-/* Menú lateral (desktop) */
+
 .sidebar {
-    width: 250px; /* Ajusta el ancho */
+    width: 250px; 
     position: fixed;
     left: 0;
     top: 0;
     height: 100%;
     background-color: #333;
     color: #fff;
-    transition: transform 0.3s ease; /* Para transición en móvil usaremos transform */
+    transition: transform 0.3s ease; 
 }
 
 .sidebar ul {
@@ -39,8 +39,8 @@ body {
 }
 
 .sidebar ul li a {
-    display: block;              /* Hace que el enlace ocupe toda la línea */
-    padding: 10px 20px;          /* 10px arriba y abajo, 20px a la izquierda y derecha */
+    display: block;             
+    padding: 10px 20px;        
     color: #fff;
     text-decoration: none;
     font-size: 1.2rem;
@@ -55,16 +55,16 @@ body {
     color: #00bcd4;
 }
 
-/* Contenido principal (desktop) */
+
 .content {
     width: 85%;
     overflow-y: scroll;
     scroll-behavior: smooth;
-    margin-left: 250px; /* Sin margen blanco */
+    margin-left: 250px; 
     transition: margin-left 0.3s ease;
 }
 
-/* Secciones */
+
 .section {
     min-height: 100vh;
     padding: 40px 20px;
@@ -76,7 +76,7 @@ body {
     align-items: center;
 }
 
-/* Fondo de secciones */
+
 #home {
     background: #f4f4f9;
     text-align: center;
@@ -102,7 +102,7 @@ body {
     text-align: center;
 }
 
-/* Títulos */
+
 h1, h2, h3 {
     text-align: center;
     color: #333;
@@ -118,7 +118,7 @@ h2 {
     font-size: 3em;
 }
 
-/* Enlaces */
+
 .links {
     margin-top: 20px;
 }
@@ -134,7 +134,7 @@ h2 {
     color: #0056a3;
 }
 
-/* Listas */
+
 ul {
     padding-left: 20px;
 }
@@ -151,7 +151,7 @@ ul li {
     margin: 20px 150px;
 }
 
-/* Botón */
+
 button {
     padding: 10px 20px;
     background-color: #0078d7;
@@ -168,7 +168,7 @@ button:hover {
     background-color: #0056a3;
 }
 
-/* Proyectos */
+
 .project-container {
     display: flex;
     flex-wrap: wrap;
@@ -276,7 +276,7 @@ button:hover {
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
-    width: 22%;
+    width: 18%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: all 0.3s ease;
@@ -360,8 +360,7 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* Media queries */
-/* Para escritorio mediano */
+
 @media (max-width: 1024px) {
     .sidebar {
         width: 20%;
@@ -384,7 +383,7 @@ button:hover {
     }
 }
 
-/* Versión móvil: overlay del menú */
+
 @media (max-width: 768px) {
     .sidebar {
         width: 250px;
@@ -399,12 +398,12 @@ button:hover {
     .sidebar.open {
         transform: translateX(0);
     }
-    /* El contenido ocupa siempre el 100% para evitar margen blanco */
+  
     .content {
         width: 100%;
         margin-left: 0;
     }
-    /* Botón hamburguesa: posición inicial en la esquina superior izquierda */
+
     .menu-toggle {
         display: block;
         position: fixed;
@@ -419,14 +418,14 @@ button:hover {
         z-index: 1300;
         transition: all 0.3s ease;
     }
-    /* Cuando se abra el menú, reposicionar el botón en la esquina superior derecha */
+
     .menu-toggle.open {
         left: auto;
         right: 15px;
     }
 }
 
-/* Para pantallas muy pequeñas (max-width: 480px) */
+
 @media (max-width: 480px) {
     .sidebar {
         padding: 10px;
@@ -477,12 +476,11 @@ button:hover {
     .menu-toggle {
       display: none !important;
     }
-    /* También reiniciamos cualquier transformación de la sidebar para mostrarla siempre */
+ 
     .sidebar {
       transform: none !important;
       width: 250px;
     }
-    /* Y establecemos el margen adecuado en el contenido */
     .content {
       margin-left: 250px !important;
       width: calc(100% - 250px);
