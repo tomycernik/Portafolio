@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tomás Cernik – Desarrollador Web</title>
+  <meta name="description" content="Portafolio de Tomás Cernik – Desarrollador Web. Proyectos, educación, skills y contacto." />
+
+  <!-- Fuente moderna -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0d10;            /* fondo principal (dark) */
+      --bg-soft: #101419;        /* tarjetas */
+      --text: #e8edf2;           /* texto */
+      --muted: #a5b1c2;          /* texto secundario */
+      --primary: #2dd4bf;        /* turquesa */
+      --primary-600: #14b8a6;    /* hover */
+      --ring: rgba(45, 212, 191, .35);
+      --card: rgba(255,255,255,.06); /* glass */
+      --shadow: 0 20px 35px rgba(0,0,0,.35);
+    }
+    /* Light mode */
+    .light {
+      --bg: #f7f8fb;
+      --bg-soft: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --card: rgba(15, 23, 42, .06);
+      --shadow: 0 10px 24px rgba(2,6,23,.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(45,212,191,.25), transparent 60%),
+        radial-gradient(900px 500px at -10% 20%, rgba(59,130,246,.18), transparent 55%),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    /* ===== Nav ===== */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(12px);
+      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .light .nav { background: linear-gradient(to bottom, rgba(255,255,255,.6), rgba(255,255,255,0)); border-bottom-color: rgba(2,6,23,.06); }
+    .nav-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: .75rem 1rem; }
+    .brand { display: flex; align-items: center; gap: .6rem; font-weight: 700; letter-spacing: .2px; }
+    .brand .dot { width: .75rem; height: .75rem; border-radius: 999px; background: linear-gradient(135deg, var(--primary), #38bdf8); box-shadow: 0 0 0 6px var(--ring); }
+    .nav-links { display: flex; gap: 1rem; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--text); opacity: .9; padding: .45rem .7rem; border-radius: .6rem; font-weight: 500; }
+    .nav-links a:hover { background: var(--card); }
+    .menu-btn { display: none; border: 1px solid rgba(255,255,255,.15); padding: .5rem .65rem; border-radius: .7rem; background: transparent; color: var(--text); }
+
+    .toggle-theme { border: 1px solid rgba(255,255,255,.15); padding: .5rem .65rem; border-radius: .7rem; background: transparent; color: var(--text); cursor: pointer; }
+    .toggle-theme:focus-visible { outline: 3px solid var(--ring); }
+
+    @media (max-width: 860px) {
+      .menu-btn { display: inline-flex; }
+      .nav-links { position: fixed; inset: 56px 0 auto 0; display: none; flex-direction: column; gap: .5rem; background: var(--bg-soft); padding: 1rem; border-bottom: 1px solid rgba(255,255,255,.08); box-shadow: var(--shadow); }
+      .light .nav-links { border-bottom-color: rgba(2,6,23,.06); }
+      .nav-links.open { display: flex; }
+    }
+
+    /* ===== Layout helpers ===== */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 1rem; }
+    section { padding: 88px 0; }
+.title { 
+  font-size: clamp(1.8rem, 2vw + 1.2rem, 3rem); 
+  line-height: 1.15; 
+  margin: 2rem 0 2.5rem; /* espacio arriba y abajo */
+  letter-spacing: -0.02em; 
+}    .lead { font-size: clamp(1rem, .5vw + .9rem, 1.25rem); color: var(--muted); }
+
+    /* ===== Hero ===== */
+    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; }
+    .hero-card { background: var(--card); border: 1px solid rgba(255,255,255,.08); padding: 2rem; border-radius: 1.4rem; box-shadow: var(--shadow); }
+    .hero h1 { font-size: clamp(2rem, 4vw + 1rem, 4rem); margin: 0 0 .2rem; letter-spacing: -0.04em; }
+    .hero .sub { font-weight: 600; color: var(--muted); margin-bottom: 1.2rem; }
+    .cta { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .btn {
+      appearance: none; border: none; cursor: pointer; text-decoration: none; font-weight: 600; color: #0b0d10;
+      background: linear-gradient(135deg, var(--primary), #38bdf8); padding: .8rem 1rem; border-radius: .9rem; box-shadow: 0 10px 20px rgba(56,189,248,.22);
+    }
+    .btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.18); }
+    .btn-outline:hover { background: var(--card); }
+.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 1.4rem;
+  background: linear-gradient(135deg, #171b22, #0f172a);
+  border: 1px solid rgba(255,255,255,.08);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow);
+  margin: 0 auto;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.4rem;
+}
+.avatar svg { width: 64%; height: 64%; opacity: .9; }
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .avatar { order: -1; } }
+
+    /* ===== Cards / sections ===== */
+    .grid { display: grid; gap: 1.2rem; grid-template-columns: repeat(12, 1fr); }
+    .card { grid-column: span 12; background: var(--card); border: 1px solid rgba(255,255,255,.08); border-radius: 1.2rem; padding: 1.25rem; box-shadow: var(--shadow); }
+    @media (min-width: 680px) { .card.sm-6 { grid-column: span 6; } }
+    @media (min-width: 960px) { .card.md-4 { grid-column: span 4; } }
+
+    /* ===== Sobre mí ===== */
+    .about p { margin: 0 0 .8rem; }
+    .muted { color: var(--muted); }
+
+    /* ===== Portafolio ===== */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .project {
+      background: var(--card); border: 1px solid rgba(255,255,255,.08); border-radius: 1rem; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; box-shadow: var(--shadow);
+    }
+    .project:hover { transform: translateY(-4px); }
+    .thumb { aspect-ratio: 16/9; background: linear-gradient(135deg, #1f2937, #0b1220); display: grid; place-items: center; }
+    .thumb span { color: var(--muted); font-size: .9rem; }
+    .project .content { padding: 3rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+    .chip { font-size: .75rem; padding: .3rem .55rem; border-radius: 999px; background: rgba(45,212,191,.14); color: var(--primary); border: 1px solid rgba(45,212,191,.24); }
+    .links { display: flex; gap: .6rem; margin-top: .8rem; }
+    .link { font-size: .9rem; text-decoration: none; color: var(--text); padding: .45rem .65rem; border-radius: .6rem; background: rgba(255,255,255,.06); }
+    .link:hover { background: rgba(255,255,255,.1); }
+
+    /* ===== Timeline Educación ===== */
+    .timeline { position: relative; margin-left: .6rem; padding-left: 1.2rem; }
+    .timeline:before { content: ""; position: absolute; left: 0; top: .2rem; bottom: .2rem; width: 2px; background: linear-gradient(var(--primary), #38bdf8); border-radius: 2px; }
+    .edu { margin-bottom: 1rem; }
+    .edu h4 { margin: 0 0 .2rem; }
+    .edu small { color: var(--muted); }
+
+    /* ===== Skills ===== */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .skills-card h4 { margin: 0 0 .4rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tag { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); padding: .35rem .6rem; border-radius: .6rem; font-size: .85rem; }
+
+    /* ===== Contacto ===== */
+    .contact {
+      display: grid; grid-template-columns: 1fr; gap: 1rem;
+    }
+    .contact a { text-decoration: none; color: var(--text); }
+    .contact .socials { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .pill { display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .7rem; border-radius: 999px; background: var(--card); border: 1px solid rgba(255,255,255,.08); }
+
+    /* ===== Footer ===== */
+    footer { padding: 24px 0 40px; color: var(--muted); text-align: center; }
+    h2.title { margin-bottom: 1.5rem; } /* separa las secciones */
+    .project h3 { margin: 0 0 .8rem; } /* antes .3rem */
+
+
+    /* Reveal on scroll (CSS only hint) */
+    [data-reveal] { opacity: 0; transform: translateY(12px); transition: all .6s ease; }
+    [data-reveal].visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Tomás Cernik</span>
+      </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+      <div class="nav-links" id="navLinks" role="navigation">
+        <a href="#inicio">Inicio</a>
+        <a href="#sobre">Sobre mí</a>
+        <a href="#portafolio">Portafolio</a>
+        <a href="#educacion">Educación</a>
+        <a href="#skills">Habilidades</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <button class="toggle-theme" id="themeBtn" aria-label="Cambiar tema">🌗</button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="inicio" class="container">
+    <div class="hero" data-reveal>
+      <div class="hero-card">
+        <h1>Desarrollador Web</h1>
+        <p class="sub">Orientado a proyectos full‑stack y consumo de APIs</p>
+        <p class="lead">Hola! Soy <strong>Tomás Cernik</strong>. Construyo aplicaciones limpias, rápidas y mantenibles. Estoy cursando la tecnicatura en Desarrollo Web (UNLaM) y sumando proyectos propios.
+        </p>
+        <div class="cta">
+          <a class="btn" href="#portafolio">Ver proyectos</a>
+          <a class="btn btn-outline" href="#contacto">Contacto</a>
+          <a class="btn btn-outline" href="CV_Tomas_Cernik_2025.pdf" download>Descargar CV</a>
+        </div>
+      </div>
+      <div class="avatar" aria-hidden="true">
+       <img src="Imagen de WhatsApp 2023-04-14 a las 16.51.46.jpg" alt="Foto de Tomás Cernik">
+    </div>
+  </section>
+
+  <!-- ===== SOBRE MÍ ===== -->
+  <section id="sobre" class="container">
+    <h2 class="title">Sobre mí</h2>
+    <div class="grid">
+      <article class="card sm-6" data-reveal>
+        <p>Estudiante de la tecnicatura en <strong>Desarrollo Web</strong> en la <strong>Universidad de La Matanza</strong>. Aprendí a trabajar en equipo y a gestionar proyectos. Por mi cuenta, desarrollé un <strong>CRM</strong> con estadísticas, filtros y manejo de datos.</p>
+        <p class="muted"><strong>Ahora</strong> estoy sumando proyectos full‑stack llevando a cabo buenas prácticas y mejorando mi inglés.
+        </p>
+      </article>
+      <aside class="card sm-6" data-reveal>
+        <h3 style="margin-top:0">Lo que me define</h3>
+  <ul>
+  <li>Claridad y limpieza en el código</li>
+  <li>Curiosidad por IA aplicada a productos</li>
+  <li>Aprendizaje constante y adaptación</li>
+  <li>Orientación a la resolución de problemas</li>
+  <li>Trabajo en equipo y colaboración</li>
+  <li>Atención al detalle y buenas prácticas</li>
+  </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== PORTAFOLIO ===== -->
+  <section id="portafolio" class="container">
+    <h2 class="title">Portafolio</h2>
+    <p class="lead">Algunos proyectos recientes. Puedo compartir más repos al contacto.</p>
+    <div class="projects" data-reveal>
+      <!-- Proyecto 1 -->
+      <article class="project">
+        <div class="thumb"><span>CRM Essenza Divina</span></div>
+        <div class="content">
+          <h3 style="margin:.2rem 0 .3rem">CRM Essenza Divina</h3>
+          <p class="muted">Gestión de ventas, estadísticas de productos y vendedores, múltiples filtros de búsqueda.</p>
+          <div class="chips">
+            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">Mustache</span>
+          </div>
+          <div class="links">
+            <a class="link" href="https://github.com/tomycernik/EssenzaCRM.git" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+      <!-- Proyecto 2 -->
+      <article class="project">
+        <div class="thumb"><span>API para clasificación de Emails</span></div>
+        <div class="content">
+          <h3 style="margin:.2rem 0 .3rem">API para clasificación de Emails</h3>
+          <p class="muted">Clasifica emails según urgencia y spam; foco en endpoints limpios y documentación.</p>
+          <div class="chips">
+            <span class="chip">C#</span><span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span>
+          </div>
+          <div class="links">
+            <a class="link" href="https://github.com/Ignacio26fr/Tasky_webProyecto.git" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+      <!-- Proyecto 3 -->
+      <article class="project">
+        <div class="thumb"><span>E‑Commerce de apuntes</span></div>
+        <div class="content">
+          <h3 style="margin:.2rem 0 .3rem">E‑Commerce de apuntes estudiantiles</h3>
+          <p class="muted">Compra/venta de apuntes con moneda virtual y panel de administración.</p>
+          <div class="chips">
+            <span class="chip">Java</span><span class="chip">Spring</span><span class="chip">Thymeleaf</span>
+          </div>
+          <div class="links">
+            <a class="link" href="https://github.com/Gaby137/TallerWeb1.git" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+      <!-- Proyecto 4 -->
+      <article class="project">
+        <div class="thumb"><span>Gestión de Productos</span></div>
+        <div class="content">
+          <h3 style="margin:.2rem 0 .3rem">Gestión de Productos (Angular + Node)</h3>
+          <p class="muted">CRUD, búsqueda y filtrado. Buenas prácticas de modularización.</p>
+          <div class="chips">
+            <span class="chip">Angular</span><span class="chip">Node.js</span><span class="chip">Express</span>
+          </div>
+          <div class="links">
+            <a class="link" href="https://github.com/clVBisitari/herrashopv19.git" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== EDUCACIÓN ===== -->
+  <section id="educacion" class="container">
+    <h2 class="title">Educación</h2>
+    <div class="card" data-reveal>
+      <div class="timeline">
+        <div class="edu">
+          <h4>Tecnicatura en Desarrollo Web</h4>
+          <small>Universidad de La Matanza · 2022 — en curso</small>
+        </div>
+        <div class="edu">
+          <h4>Curso: React y TypeScript – La Guía Completa (+10 proyectos)</h4>
+          <small>Udemy · 2025 — en curso</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="container">
+    <h2 class="title">Habilidades</h2>
+    <div class="skills-grid" data-reveal>
+      <div class="card skills-card">
+        <h4>Lenguajes</h4>
+        <div class="skill-tags">
+          <span class="tag">Java</span><span class="tag">PHP</span><span class="tag">SQL</span><span class="tag">C#</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Node.js</span>
+        </div>
+      </div>
+      <div class="card skills-card">
+        <h4>Frameworks</h4>
+        <div class="skill-tags">
+          <span class="tag">Spring</span><span class="tag">Hibernate</span><span class="tag">Thymeleaf</span><span class="tag">Angular</span><span class="tag">Express.js</span>
+        </div>
+      </div>
+      <div class="card skills-card">
+        <h4>Metodologías</h4>
+        <div class="skill-tags">
+          <span class="tag">Scrum</span><span class="tag">MVC</span><span class="tag">Diseño escalable</span><span class="tag">APIs REST</span>
+        </div>
+      </div>
+      <div class="card skills-card">
+        <h4>Software</h4>
+        <div class="skill-tags">
+          <span class="tag">IntelliJ IDEA</span><span class="tag">PhpStorm</span><span class="tag">PhpMyAdmin</span><span class="tag">MySQL Workbench</span><span class="tag">MariaDB</span><span class="tag">Visual Studio</span><span class="tag">VS Code</span><span class="tag">Excel</span><span class="tag">Draw.io</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACTO ===== -->
+  <section id="contacto" class="container">
+    <h2 class="title">Contacto</h2>
+    <div class="card" data-reveal>
+      <div class="contact">
+        <p class="lead">¿Te interesa charlar? Escribime.</p>
+        <div class="socials">
+          <a class="pill" href="mailto:cerniktomy@gmail.com" aria-label="Email">✉️ <span>cerniktomy@gmail.com</span></a>
+          <a class="pill" href="https://github.com/tomycernik" target="_blank" rel="noopener" aria-label="GitHub">🐱 <span>GitHub</span></a>
+          <a class="pill" href="https://www.linkedin.com/in/tomas-cernik-51371b250" target="_blank" rel="noopener" aria-label="LinkedIn">💼 <span>LinkedIn</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="container">Hecho con ❤️ por Tomás — Última actualización 2025</footer>
+
+  <script>
+    // === Toggle tema ===
+    const themeBtn = document.getElementById('themeBtn');
+    const userPref = localStorage.getItem('theme');
+    if (userPref === 'light') document.body.classList.add('light');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // === Menú móvil ===
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // === Reveal on scroll ===
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'))
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
