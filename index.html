@@ -71,6 +71,16 @@
       .light .nav-links { border-bottom-color: rgba(2,6,23,.06); }
       .nav-links.open { display: flex; }
     }
+    .nav-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* En desktop solo dejamos el toggle aparte si querés */
+@media (min-width: 861px) {
+  .nav-actions { gap: 1rem; }
+}
 
     /* ===== Layout helpers ===== */
     .container { max-width: 1080px; margin: 0 auto; padding: 0 1rem; }
@@ -84,7 +94,7 @@
 
     /* ===== Hero ===== */
     .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; }
-    .hero-card { background: var(--card); border: 1px solid rgba(255,255,255,.08); padding: 2rem; border-radius: 1.4rem; box-shadow: var(--shadow); }
+    .hero-card { background: var(--card); border: 1px solid rgba(255,255,255,.08); padding: 2rem; border-radius: 1.4rem; box-shadow: var(--shadow); margin-top: 2rem;}
     .hero h1 { font-size: clamp(2rem, 4vw + 1rem, 4rem); margin: 0 0 .2rem; letter-spacing: -0.04em; }
     .hero .sub { font-weight: 600; color: var(--muted); margin-bottom: 1.2rem; }
     .cta { display: flex; gap: .75rem; flex-wrap: wrap; }
@@ -113,7 +123,22 @@
   border-radius: 1.4rem;
 }
 .avatar svg { width: 64%; height: 64%; opacity: .9; }
-@media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .avatar { order: -1; } }
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 1rem; /* separa la foto del nav */
+    padding-bottom: 1rem; /* separa la foto del card */
+  }
+  .avatar {
+    order: -1;
+    margin-bottom: 2rem; /* separa la foto del card */
+  }
+  .hero-card {
+    text-align: center;
+  }
+  .cta { justify-content: center; }
+}
 
     /* ===== Cards / sections ===== */
     .grid { display: grid; gap: 1.2rem; grid-template-columns: repeat(12, 1fr); }
@@ -180,6 +205,7 @@
         <span class="dot"></span>
         <span>Tomás Cernik</span>
       </div>
+      <div class="nav-actions">
       <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
       <div class="nav-links" id="navLinks" role="navigation">
         <a href="#inicio">Inicio</a>
@@ -190,6 +216,7 @@
         <a href="#contacto">Contacto</a>
       </div>
       <button class="toggle-theme" id="themeBtn" aria-label="Cambiar tema">🌗</button>
+      </div>
     </div>
   </nav>
 
