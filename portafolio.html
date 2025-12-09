@@ -71,16 +71,6 @@
       .light .nav-links { border-bottom-color: rgba(2,6,23,.06); }
       .nav-links.open { display: flex; }
     }
-    .nav-actions {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-/* En desktop solo dejamos el toggle aparte si querés */
-@media (min-width: 861px) {
-  .nav-actions { gap: 1rem; }
-}
 
     /* ===== Layout helpers ===== */
     .container { max-width: 1080px; margin: 0 auto; padding: 0 1rem; }
@@ -94,7 +84,7 @@
 
     /* ===== Hero ===== */
     .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; }
-    .hero-card { background: var(--card); border: 1px solid rgba(255,255,255,.08); padding: 2rem; border-radius: 1.4rem; box-shadow: var(--shadow); margin-top: 2rem;}
+    .hero-card { background: var(--card); border: 1px solid rgba(255,255,255,.08); padding: 2rem; border-radius: 1.4rem; box-shadow: var(--shadow); }
     .hero h1 { font-size: clamp(2rem, 4vw + 1rem, 4rem); margin: 0 0 .2rem; letter-spacing: -0.04em; }
     .hero .sub { font-weight: 600; color: var(--muted); margin-bottom: 1.2rem; }
     .cta { display: flex; gap: .75rem; flex-wrap: wrap; }
@@ -123,22 +113,7 @@
   border-radius: 1.4rem;
 }
 .avatar svg { width: 64%; height: 64%; opacity: .9; }
-@media (max-width: 860px) {
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding-top: 1rem; /* separa la foto del nav */
-    padding-bottom: 1rem; /* separa la foto del card */
-  }
-  .avatar {
-    order: -1;
-    margin-bottom: 2rem; /* separa la foto del card */
-  }
-  .hero-card {
-    text-align: center;
-  }
-  .cta { justify-content: center; }
-}
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .avatar { order: -1; } }
 
     /* ===== Cards / sections ===== */
     .grid { display: grid; gap: 1.2rem; grid-template-columns: repeat(12, 1fr); }
@@ -205,7 +180,6 @@
         <span class="dot"></span>
         <span>Tomás Cernik</span>
       </div>
-      <div class="nav-actions">
       <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
       <div class="nav-links" id="navLinks" role="navigation">
         <a href="#inicio">Inicio</a>
@@ -216,7 +190,6 @@
         <a href="#contacto">Contacto</a>
       </div>
       <button class="toggle-theme" id="themeBtn" aria-label="Cambiar tema">🌗</button>
-      </div>
     </div>
   </nav>
 
@@ -226,8 +199,8 @@
       <div class="hero-card">
         <h1>Desarrollador Web</h1>
         <p class="sub">Orientado a proyectos full‑stack y consumo de APIs</p>
-        <p class="lead">Hola! Soy <strong>Tomás Cernik</strong>. Construyo aplicaciones limpias, rápidas y mantenibles. Estoy cursando la tecnicatura en Desarrollo Web (UNLaM) y sumando proyectos propios.
-        </p>
+          <p class="lead">Hola! Soy <strong>Tomás Cernik</strong>. Construyo aplicaciones limpias, rápidas y mantenibles. <strong>Ya finalicé la tecnicatura en Desarrollo Web (UNLaM)</strong> y sigo sumando proyectos propios.
+          </p>
         <div class="cta">
           <a class="btn" href="#portafolio">Ver proyectos</a>
           <a class="btn btn-outline" href="#contacto">Contacto</a>
@@ -244,7 +217,7 @@
     <h2 class="title">Sobre mí</h2>
     <div class="grid">
       <article class="card sm-6" data-reveal>
-        <p>Estudiante de la tecnicatura en <strong>Desarrollo Web</strong> en la <strong>Universidad de La Matanza</strong>. Aprendí a trabajar en equipo y a gestionar proyectos. Por mi cuenta, desarrollé un <strong>CRM</strong> con estadísticas, filtros y manejo de datos.</p>
+        <p>Técnico en <strong>Desarrollo Web</strong> recibido en la <strong>Universidad de La Matanza</strong>. Aprendí a trabajar en equipo y a gestionar proyectos. Por mi cuenta, desarrollé un <strong>CRM</strong> con estadísticas, filtros y manejo de datos.</p>
         <p class="muted"><strong>Ahora</strong> estoy sumando proyectos full‑stack llevando a cabo buenas prácticas y mejorando mi inglés.
         </p>
       </article>
@@ -269,7 +242,6 @@
     <div class="projects" data-reveal>
       <!-- Proyecto 1 -->
       <article class="project">
-        <div class="thumb"><span>CRM Essenza Divina</span></div>
         <div class="content">
           <h3 style="margin:.2rem 0 .3rem">CRM Essenza Divina</h3>
           <p class="muted">Gestión de ventas, estadísticas de productos y vendedores, múltiples filtros de búsqueda.</p>
@@ -281,9 +253,21 @@
           </div>
         </div>
       </article>
+      <article class="project">
+        <div class="content">
+          <h3 style="margin:.2rem 0 .3rem">Oniria</h3>
+          <p class="muted">Proyecto final de tecnicatura. Plataforma web para explorar el mundo interior a través del registro de sueños, con espacio personal, patrones revelados y mensajes que acompañan cada viaje nocturno.</p>
+          <div class="chips">
+            <span class="chip">React</span><span class="chip">Node</span><span class="chip">Supabase</span><span class="chip">TypeScript</span><span class="chip">Jest</span><span class="chip">Express</span>
+          </div>
+          <div class="links">
+            <a class="link" href="https://github.com/PedroOsnaghi/oniria-api.git" target="_blank" rel="noopener">GitHub</a>
+            <a class="link" href="https://app.oniria3d.com.ar/" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #8f5cff, #b983ff); color: #fff;">Visitar</a>
+          </div>
+        </div>
+      </article>
       <!-- Proyecto 2 -->
       <article class="project">
-        <div class="thumb"><span>API para clasificación de Emails</span></div>
         <div class="content">
           <h3 style="margin:.2rem 0 .3rem">API para clasificación de Emails</h3>
           <p class="muted">Clasifica emails según urgencia y spam; foco en endpoints limpios y documentación.</p>
@@ -293,11 +277,11 @@
           <div class="links">
             <a class="link" href="https://github.com/Ignacio26fr/Tasky_webProyecto.git" target="_blank" rel="noopener">GitHub</a>
           </div>
+          
         </div>
       </article>
       <!-- Proyecto 3 -->
       <article class="project">
-        <div class="thumb"><span>E‑Commerce de apuntes</span></div>
         <div class="content">
           <h3 style="margin:.2rem 0 .3rem">E‑Commerce de apuntes estudiantiles</h3>
           <p class="muted">Compra/venta de apuntes con moneda virtual y panel de administración.</p>
@@ -311,7 +295,6 @@
       </article>
       <!-- Proyecto 4 -->
       <article class="project">
-        <div class="thumb"><span>Gestión de Productos</span></div>
         <div class="content">
           <h3 style="margin:.2rem 0 .3rem">Gestión de Productos (Angular + Node)</h3>
           <p class="muted">CRUD, búsqueda y filtrado. Buenas prácticas de modularización.</p>
@@ -331,14 +314,20 @@
     <h2 class="title">Educación</h2>
     <div class="card" data-reveal>
       <div class="timeline">
-        <div class="edu">
-          <h4>Tecnicatura en Desarrollo Web</h4>
-          <small>Universidad de La Matanza · 2022 — en curso</small>
-        </div>
-        <div class="edu">
-          <h4>Curso: React y TypeScript – La Guía Completa (+10 proyectos)</h4>
-          <small>Udemy · 2025 — en curso</small>
-        </div>
+          <div class="edu">
+            <h4>Tecnicatura en Desarrollo Web</h4>
+            <small>Universidad de La Matanza · 2022 — 2025 · <span style='color:var(--primary);font-weight:bold;'>Finalizada</span></small>
+            <div style="margin-top:8px;">
+              <label style="font-size:.95rem;color:var(--muted);">Progreso:</label>
+              <div style="background:#222;border-radius:8px;overflow:hidden;height:18px;width:100%;margin-top:4px;box-shadow:0 1px 4px rgba(0,0,0,.12);">
+                <div style="width:100%;height:100%;background:linear-gradient(90deg,var(--primary),#38bdf8);text-align:right;padding-right:8px;color:#fff;font-weight:600;line-height:18px;">100%</div>
+              </div>
+            </div>
+          </div>
+          <div class="edu">
+            <h4>Licenciatura en Gestión de las Tecnologías</h4>
+            <small>Próximo inicio · 2026</small>
+          </div>
       </div>
     </div>
   </section>
