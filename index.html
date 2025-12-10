@@ -96,8 +96,8 @@
     .btn-outline { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.18); }
     .btn-outline:hover { background: var(--card); }
 .avatar {
-  width: 180px;
-  height: 180px;
+  width: 260px;
+  height: 260px;
   border-radius: 1.4rem;
   background: linear-gradient(135deg, #171b22, #0f172a);
   border: 1px solid rgba(255,255,255,.08);
@@ -170,6 +170,11 @@
     /* Reveal on scroll (CSS only hint) */
     [data-reveal] { opacity: 0; transform: translateY(12px); transition: all .6s ease; }
     [data-reveal].visible { opacity: 1; transform: translateY(0); }
+
+    /* Menos espacio entre el header y el hero */
+section#inicio.container {
+  margin-top: 32px;
+}
   </style>
 </head>
 <body>
