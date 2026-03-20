@@ -4,181 +4,355 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tomás Cernik – Desarrollador Web</title>
-  <meta name="description" content="Portafolio de Tomás Cernik – Desarrollador Web. Proyectos, educación, skills y contacto." />
-
-  <!-- Fuente moderna -->
+  <meta name="description" content="Portafolio de Tomás Cernik – Desarrollador Web Fullstack. Proyectos, educación, skills y contacto." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0d10;            /* fondo principal (dark) */
-      --bg-soft: #101419;        /* tarjetas */
-      --text: #e8edf2;           /* texto */
-      --muted: #a5b1c2;          /* texto secundario */
-      --primary: #2dd4bf;        /* turquesa */
-      --primary-600: #14b8a6;    /* hover */
-      --ring: rgba(45, 212, 191, .35);
-      --card: rgba(255,255,255,.06); /* glass */
-      --shadow: 0 20px 35px rgba(0,0,0,.35);
+      --bg: #080b0f;
+      --bg-soft: #0e1318;
+      --bg-card: #121820;
+      --text: #edf2f7;
+      --muted: #8fa3b8;
+      --primary: #00e5c3;
+      --primary-dim: rgba(0,229,195,.15);
+      --accent: #5b8af5;
+      --accent-dim: rgba(91,138,245,.12);
+      --gold: #f5c842;
+      --ring: rgba(0,229,195,.3);
+      --card: rgba(255,255,255,.04);
+      --card-border: rgba(255,255,255,.07);
+      --shadow: 0 24px 48px rgba(0,0,0,.5);
+      --radius: 1.2rem;
     }
-    /* Light mode */
     .light {
-      --bg: #f7f8fb;
+      --bg: #f0f4f8;
       --bg-soft: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --card: rgba(15, 23, 42, .06);
-      --shadow: 0 10px 24px rgba(2,6,23,.08);
+      --bg-card: #ffffff;
+      --text: #0f1923;
+      --muted: #4a6077;
+      --card: rgba(15,25,35,.04);
+      --card-border: rgba(15,25,35,.09);
+      --shadow: 0 10px 30px rgba(2,6,23,.1);
     }
-
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      font-family: "DM Sans", system-ui, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 80% -10%, rgba(45,212,191,.25), transparent 60%),
-        radial-gradient(900px 500px at -10% 20%, rgba(59,130,246,.18), transparent 55%),
-        var(--bg);
-      line-height: 1.6;
+      background: var(--bg);
+      line-height: 1.65;
     }
-
-    /* ===== Nav ===== */
+    /* noise texture overlay */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: .4;
+    }
+    /* background glow blobs */
+    .bg-blobs {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .blob {
+      position: absolute; border-radius: 50%; filter: blur(120px);
+    }
+    .blob-1 { width: 800px; height: 600px; top: -200px; right: -200px; background: rgba(0,229,195,.08); }
+    .blob-2 { width: 600px; height: 500px; bottom: 10%; left: -150px; background: rgba(91,138,245,.07); }
+    .blob-3 { width: 400px; height: 400px; top: 50%; right: 10%; background: rgba(245,200,66,.04); }
+    /* ===== NAV ===== */
     .nav {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: saturate(180%) blur(12px);
-      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: saturate(180%) blur(16px);
+      background: rgba(8,11,15,.7);
+      border-bottom: 1px solid var(--card-border);
     }
-    .light .nav { background: linear-gradient(to bottom, rgba(255,255,255,.6), rgba(255,255,255,0)); border-bottom-color: rgba(2,6,23,.06); }
-    .nav-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: .75rem 1rem; }
-    .brand { display: flex; align-items: center; gap: .6rem; font-weight: 700; letter-spacing: .2px; }
-    .brand .dot { width: .75rem; height: .75rem; border-radius: 999px; background: linear-gradient(135deg, var(--primary), #38bdf8); box-shadow: 0 0 0 6px var(--ring); }
-    .nav-links { display: flex; gap: 1rem; align-items: center; }
-    .nav-links a { text-decoration: none; color: var(--text); opacity: .9; padding: .45rem .7rem; border-radius: .6rem; font-weight: 500; }
-    .nav-links a:hover { background: var(--card); }
-    .menu-btn { display: none; border: 1px solid rgba(255,255,255,.15); padding: .5rem .65rem; border-radius: .7rem; background: transparent; color: var(--text); }
-
-    .toggle-theme { border: 1px solid rgba(255,255,255,.15); padding: .5rem .65rem; border-radius: .7rem; background: transparent; color: var(--text); cursor: pointer; }
-    .toggle-theme:focus-visible { outline: 3px solid var(--ring); }
-
+    .light .nav { background: rgba(240,244,248,.8); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: .85rem 1.5rem; }
+    .brand { display: flex; align-items: center; gap: .7rem; font-family: "Syne", sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: .01em; }
+    .brand .dot {
+      width: .7rem; height: .7rem; border-radius: 999px;
+      background: var(--primary);
+      box-shadow: 0 0 0 5px var(--primary-dim), 0 0 16px var(--primary);
+      animation: pulse-dot 3s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { box-shadow: 0 0 0 5px var(--primary-dim), 0 0 16px var(--primary); }
+      50% { box-shadow: 0 0 0 8px var(--primary-dim), 0 0 28px var(--primary); }
+    }
+    .nav-links { display: flex; gap: .3rem; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--muted); padding: .45rem .8rem; border-radius: .6rem; font-size: .9rem; font-weight: 500; transition: color .2s, background .2s; }
+    .nav-links a:hover { color: var(--text); background: var(--card); }
+    .menu-btn { display: none; border: 1px solid var(--card-border); padding: .5rem .65rem; border-radius: .7rem; background: transparent; color: var(--text); cursor: pointer; font-size: 1rem; }
+    .toggle-theme { border: 1px solid var(--card-border); padding: .5rem .65rem; border-radius: .7rem; background: transparent; color: var(--text); cursor: pointer; font-size: 1rem; }
     @media (max-width: 860px) {
       .menu-btn { display: inline-flex; }
-      .nav-links { position: fixed; inset: 56px 0 auto 0; display: none; flex-direction: column; gap: .5rem; background: var(--bg-soft); padding: 1rem; border-bottom: 1px solid rgba(255,255,255,.08); box-shadow: var(--shadow); }
-      .light .nav-links { border-bottom-color: rgba(2,6,23,.06); }
+      .nav-links { position: fixed; inset: 57px 0 auto 0; display: none; flex-direction: column; gap: .3rem; background: var(--bg-soft); padding: 1rem 1.5rem; border-bottom: 1px solid var(--card-border); box-shadow: var(--shadow); z-index: 99; }
       .nav-links.open { display: flex; }
     }
-
-    /* ===== Layout helpers ===== */
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 1rem; }
-    section { padding: 88px 0; }
-.title { 
-  font-size: clamp(1.8rem, 2vw + 1.2rem, 3rem); 
-  line-height: 1.15; 
-  margin: 2rem 0 2.5rem; /* espacio arriba y abajo */
-  letter-spacing: -0.02em; 
-}    .lead { font-size: clamp(1rem, .5vw + .9rem, 1.25rem); color: var(--muted); }
-
-    /* ===== Hero ===== */
-    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; }
-    .hero-card { background: var(--card); border: 1px solid rgba(255,255,255,.08); padding: 2rem; border-radius: 1.4rem; box-shadow: var(--shadow); }
-    .hero h1 { font-size: clamp(2rem, 4vw + 1rem, 4rem); margin: 0 0 .2rem; letter-spacing: -0.04em; }
-    .hero .sub { font-weight: 600; color: var(--muted); margin-bottom: 1.2rem; }
+    /* ===== LAYOUT ===== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
+    section { padding: 96px 0; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 1rem;
+    }
+    .section-label::before { content: ""; display: block; width: 24px; height: 2px; background: var(--primary); border-radius: 2px; }
+    .title {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2rem, 2.5vw + 1rem, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      margin: 0 0 2.5rem;
+    }
+    .lead { font-size: 1.1rem; color: var(--muted); }
+    /* ===== HERO ===== */
+    #inicio { padding-top: 80px; padding-bottom: 80px; }
+    .hero { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .85rem; font-weight: 600; color: var(--primary);
+      background: var(--primary-dim); border: 1px solid rgba(0,229,195,.2);
+      padding: .35rem .85rem; border-radius: 999px; margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: "●"; font-size: .5rem; }
+    .hero h1 {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2.5rem, 5vw + 1rem, 5rem);
+      font-weight: 800; letter-spacing: -.04em;
+      line-height: 1.05; margin: 0 0 .5rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--primary); }
+    .hero-sub { font-size: 1.15rem; color: var(--muted); margin-bottom: 1.8rem; max-width: 520px; }
     .cta { display: flex; gap: .75rem; flex-wrap: wrap; }
     .btn {
-      appearance: none; border: none; cursor: pointer; text-decoration: none; font-weight: 600; color: #0b0d10;
-      background: linear-gradient(135deg, var(--primary), #38bdf8); padding: .8rem 1rem; border-radius: .9rem; box-shadow: 0 10px 20px rgba(56,189,248,.22);
+      appearance: none; border: none; cursor: pointer; text-decoration: none;
+      font-family: "DM Sans", sans-serif; font-weight: 600; font-size: .95rem;
+      padding: .8rem 1.4rem; border-radius: .9rem; transition: all .2s ease;
     }
-    .btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
-    .btn-outline { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.18); }
-    .btn-outline:hover { background: var(--card); }
-.avatar {
-  width: 260px;
-  height: 260px;
-  border-radius: 1.4rem;
-  background: linear-gradient(135deg, #171b22, #0f172a);
-  border: 1px solid rgba(255,255,255,.08);
-  display: grid;
-  place-items: center;
-  box-shadow: var(--shadow);
-  margin: 0 auto;
-}
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 1.4rem;
-}
-.avatar svg { width: 64%; height: 64%; opacity: .9; }
-@media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .avatar { order: -1; } }
-
-    /* ===== Cards / sections ===== */
-    .grid { display: grid; gap: 1.2rem; grid-template-columns: repeat(12, 1fr); }
-    .card { grid-column: span 12; background: var(--card); border: 1px solid rgba(255,255,255,.08); border-radius: 1.2rem; padding: 1.25rem; box-shadow: var(--shadow); }
-    @media (min-width: 680px) { .card.sm-6 { grid-column: span 6; } }
-    @media (min-width: 960px) { .card.md-4 { grid-column: span 4; } }
-
-    /* ===== Sobre mí ===== */
-    .about p { margin: 0 0 .8rem; }
-    .muted { color: var(--muted); }
-
-    /* ===== Portafolio ===== */
-    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-    .project {
-      background: var(--card); border: 1px solid rgba(255,255,255,.08); border-radius: 1rem; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; box-shadow: var(--shadow);
+    .btn-primary {
+      background: var(--primary); color: #080b0f;
+      box-shadow: 0 0 0 0 var(--ring);
     }
-    .project:hover { transform: translateY(-4px); }
-    .thumb { aspect-ratio: 16/9; background: linear-gradient(135deg, #1f2937, #0b1220); display: grid; place-items: center; }
-    .thumb span { color: var(--muted); font-size: .9rem; }
-    .project .content { padding: 3rem; }
-    .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
-    .chip { font-size: .75rem; padding: .3rem .55rem; border-radius: 999px; background: rgba(45,212,191,.14); color: var(--primary); border: 1px solid rgba(45,212,191,.24); }
-    .links { display: flex; gap: .6rem; margin-top: .8rem; }
-    .link { font-size: .9rem; text-decoration: none; color: var(--text); padding: .45rem .65rem; border-radius: .6rem; background: rgba(255,255,255,.06); }
-    .link:hover { background: rgba(255,255,255,.1); }
-
-    /* ===== Timeline Educación ===== */
-    .timeline { position: relative; margin-left: .6rem; padding-left: 1.2rem; }
-    .timeline:before { content: ""; position: absolute; left: 0; top: .2rem; bottom: .2rem; width: 2px; background: linear-gradient(var(--primary), #38bdf8); border-radius: 2px; }
-    .edu { margin-bottom: 1rem; }
-    .edu h4 { margin: 0 0 .2rem; }
-    .edu small { color: var(--muted); }
-
-    /* ===== Skills ===== */
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,229,195,.35); }
+    .btn-ghost {
+      background: var(--card); color: var(--text);
+      border: 1px solid var(--card-border);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.08); transform: translateY(-1px); }
+    .avatar-wrap {
+      width: 270px; height: 310px;
+      border-radius: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      overflow: hidden;
+      box-shadow: 0 0 0 8px var(--primary-dim), var(--shadow);
+      flex-shrink: 0;
+    }
+    .avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; gap: 2rem; }
+      .avatar-wrap { width: 200px; height: 220px; margin: 0 auto; }
+    }
+    /* ===== OFFER / QUÉ OFREZCO ===== */
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .offer-card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .offer-card::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--accent-color, var(--primary));
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .offer-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 20px 40px rgba(0,0,0,.4);
+    }
+    .offer-icon { font-size: 2rem; margin-bottom: .9rem; }
+    .offer-card h3 {
+      font-family: "Syne", sans-serif;
+      font-size: 1.1rem; font-weight: 700; margin: 0 0 .5rem; letter-spacing: -.01em;
+    }
+    .offer-card p { font-size: .9rem; color: var(--muted); margin: 0; line-height: 1.6; }
+    /* ===== SOBRE MÍ ===== */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    @media (max-width: 680px) { .about-grid { grid-template-columns: 1fr; } }
+    .info-card {
+      background: var(--bg-card); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 1.75rem;
+    }
+    .info-card h3 { font-family: "Syne", sans-serif; font-size: 1rem; font-weight: 700; margin: 0 0 1rem; color: var(--primary); letter-spacing: .02em; text-transform: uppercase; font-size: .8rem; }
+    .info-card p { margin: 0 0 .8rem; font-size: .95rem; }
+    .info-card p:last-child { margin-bottom: 0; }
+    .trait-list { list-style: none; padding: 0; margin: 0; }
+    .trait-list li { display: flex; align-items: flex-start; gap: .6rem; padding: .5rem 0; border-bottom: 1px solid var(--card-border); font-size: .92rem; }
+    .trait-list li:last-child { border-bottom: none; }
+    .trait-list li::before { content: "→"; color: var(--primary); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
+    /* ===== PORTAFOLIO ===== */
+    .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+    .project-card {
+      background: var(--bg-card); border: 1px solid var(--card-border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 24px 48px rgba(0,0,0,.5); border-color: rgba(255,255,255,.14); }
+    .project-header {
+      padding: 1.5rem 1.5rem .5rem;
+    }
+    .project-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+      color: var(--accent-color, var(--primary));
+      background: var(--accent-bg, var(--primary-dim));
+      border: 1px solid var(--accent-border, rgba(0,229,195,.2));
+      padding: .25rem .6rem; border-radius: 999px; margin-bottom: .9rem;
+    }
+    .project-card h3 {
+      font-family: "Syne", sans-serif;
+      font-size: 1.2rem; font-weight: 700; margin: 0 0 .5rem; letter-spacing: -.02em;
+    }
+    .project-card p { font-size: .88rem; color: var(--muted); margin: 0; line-height: 1.6; padding: 0 1.5rem .5rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .35rem; padding: .75rem 1.5rem; }
+    .chip {
+      font-size: .72rem; font-weight: 600; padding: .28rem .55rem; border-radius: 999px;
+      background: rgba(91,138,245,.1); color: #8ab0ff;
+      border: 1px solid rgba(91,138,245,.18);
+    }
+    .project-links { display: flex; gap: .5rem; padding: 1rem 1.5rem 1.5rem; margin-top: auto; }
+    .plink {
+      font-size: .83rem; font-weight: 600; text-decoration: none;
+      padding: .5rem .9rem; border-radius: .7rem;
+      background: var(--card); color: var(--text);
+      border: 1px solid var(--card-border);
+      transition: all .2s;
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .plink:hover { background: rgba(255,255,255,.1); transform: translateY(-1px); }
+    .plink.primary {
+      background: var(--primary); color: #080b0f; border-color: transparent;
+    }
+    .plink.primary:hover { filter: brightness(1.08); }
+    .plink.purple {
+      background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff; border-color: transparent;
+    }
+    .featured-banner {
+      background: linear-gradient(135deg, rgba(0,229,195,.08), rgba(91,138,245,.08));
+      border-top: 1px solid rgba(0,229,195,.15);
+      padding: .6rem 1.5rem;
+      font-size: .75rem; font-weight: 700; color: var(--primary);
+      letter-spacing: .08em; text-transform: uppercase;
+      display: flex; align-items: center; gap: .4rem;
+    }
+    /* ===== IA SECTION ===== */
+    .ai-section {
+      background: linear-gradient(135deg, rgba(0,229,195,.06), rgba(91,138,245,.06));
+      border: 1px solid rgba(0,229,195,.15);
+      border-radius: 1.5rem;
+      padding: 2.5rem 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .ai-section::before {
+      content: ""; position: absolute; top: -60px; right: -60px;
+      width: 250px; height: 250px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,195,.12), transparent 70%);
+    }
+    .ai-section h3 {
+      font-family: "Syne", sans-serif; font-size: 1.5rem; font-weight: 800;
+      margin: 0 0 1rem; letter-spacing: -.02em;
+    }
+    .ai-skills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.2rem; }
+    .ai-tag {
+      font-size: .82rem; font-weight: 600; padding: .4rem .85rem; border-radius: 999px;
+      background: rgba(0,229,195,.1); color: var(--primary);
+      border: 1px solid rgba(0,229,195,.22);
+    }
+    /* ===== SKILLS ===== */
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-    .skills-card h4 { margin: 0 0 .4rem; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
-    .tag { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); padding: .35rem .6rem; border-radius: .6rem; font-size: .85rem; }
-
-    /* ===== Contacto ===== */
-    .contact {
-      display: grid; grid-template-columns: 1fr; gap: 1rem;
+    .skills-card {
+      background: var(--bg-card); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 1.4rem;
     }
-    .contact a { text-decoration: none; color: var(--text); }
-    .contact .socials { display: flex; gap: .6rem; flex-wrap: wrap; }
-    .pill { display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .7rem; border-radius: 999px; background: var(--card); border: 1px solid rgba(255,255,255,.08); }
-
-    /* ===== Footer ===== */
-    footer { padding: 24px 0 40px; color: var(--muted); text-align: center; }
-    h2.title { margin-bottom: 1.5rem; } /* separa las secciones */
-    .project h3 { margin: 0 0 .8rem; } /* antes .3rem */
-
-
-    /* Reveal on scroll (CSS only hint) */
-    [data-reveal] { opacity: 0; transform: translateY(12px); transition: all .6s ease; }
+    .skills-card h4 {
+      font-family: "Syne", sans-serif; font-size: .8rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 .9rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .tag {
+      background: var(--card); border: 1px solid var(--card-border);
+      padding: .3rem .6rem; border-radius: .5rem; font-size: .8rem; font-weight: 500;
+    }
+    /* ===== EDUCACIÓN ===== */
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before {
+      content: ""; position: absolute; left: 0; top: .4rem; bottom: .4rem;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent), transparent);
+      border-radius: 2px;
+    }
+    .edu { margin-bottom: 1.5rem; position: relative; }
+    .edu::before {
+      content: ""; position: absolute; left: -1.75rem; top: .3rem;
+      width: .55rem; height: .55rem; border-radius: 50%;
+      background: var(--primary); box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--primary-dim);
+    }
+    .edu h4 { font-family: "Syne", sans-serif; font-size: 1.05rem; font-weight: 700; margin: 0 0 .25rem; }
+    .edu small { color: var(--muted); font-size: .85rem; }
+    .edu-bar { margin-top: .6rem; background: rgba(255,255,255,.06); border-radius: 999px; height: 6px; overflow: hidden; max-width: 300px; }
+    .edu-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--primary), #38bdf8); }
+    /* ===== CONTACTO ===== */
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+    @media (max-width: 680px) { .contact-wrap { grid-template-columns: 1fr; } }
+    .contact-text h3 { font-family: "Syne", sans-serif; font-size: 1.8rem; font-weight: 800; margin: 0 0 .75rem; letter-spacing: -.03em; }
+    .socials { display: flex; flex-direction: column; gap: .6rem; margin-top: 1.5rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .7rem 1rem; border-radius: .9rem;
+      background: var(--bg-card); border: 1px solid var(--card-border);
+      text-decoration: none; color: var(--text); font-size: .9rem; font-weight: 500;
+      transition: all .2s;
+    }
+    .pill:hover { background: rgba(255,255,255,.08); transform: translateX(4px); border-color: rgba(255,255,255,.15); }
+    .contact-cta {
+      background: linear-gradient(135deg, var(--primary-dim), var(--accent-dim));
+      border: 1px solid rgba(0,229,195,.2);
+      border-radius: 1.5rem; padding: 2.5rem;
+      text-align: center;
+    }
+    .contact-cta p { color: var(--muted); margin: 0 0 1.2rem; }
+    /* ===== FOOTER ===== */
+    footer { padding: 2rem 0 3rem; color: var(--muted); text-align: center; font-size: .85rem; border-top: 1px solid var(--card-border); margin-top: 2rem; }
+    /* ===== REVEAL ===== */
+    [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
     [data-reveal].visible { opacity: 1; transform: translateY(0); }
-
-    /* Menos espacio entre el header y el hero */
-section#inicio.container {
-  margin-top: 32px;
-}
+    /* ===== DIVIDER ===== */
+    .section-divider { border: none; border-top: 1px solid var(--card-border); margin: 0; }
   </style>
 </head>
 <body>
-  <!-- ===== NAV ===== -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
   <nav class="nav">
     <div class="nav-inner">
       <div class="brand">
@@ -188,6 +362,7 @@ section#inicio.container {
       <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
       <div class="nav-links" id="navLinks" role="navigation">
         <a href="#inicio">Inicio</a>
+        <a href="#ofrezco">Qué ofrezco</a>
         <a href="#sobre">Sobre mí</a>
         <a href="#portafolio">Portafolio</a>
         <a href="#educacion">Educación</a>
@@ -197,196 +372,282 @@ section#inicio.container {
       <button class="toggle-theme" id="themeBtn" aria-label="Cambiar tema">🌗</button>
     </div>
   </nav>
-
-  <!-- ===== HERO ===== -->
   <section id="inicio" class="container">
     <div class="hero" data-reveal>
-      <div class="hero-card">
-        <h1>Desarrollador Web</h1>
-        <p class="sub">Orientado a proyectos full‑stack y consumo de APIs</p>
-          <p class="lead">Hola! Soy <strong>Tomás Cernik</strong>. Construyo aplicaciones limpias, rápidas y mantenibles. <strong>Ya finalicé la tecnicatura en Desarrollo Web (UNLaM)</strong> y sigo sumando proyectos propios.
-          </p>
+      <div>
+        <div class="hero-eyebrow">Disponible para trabajar</div>
+        <h1>Desarrollador<br><em>Full‑Stack</em></h1>
+        <p class="hero-sub">Construyo aplicaciones web limpias, escalables y bien documentadas. Orientado a back-end, APIs REST y experiencias front-end cuidadas.</p>
         <div class="cta">
-          <a class="btn" href="#portafolio">Ver proyectos</a>
-          <a class="btn btn-outline" href="#contacto">Contacto</a>
-          <a class="btn btn-outline" href="CV_Tomas_Cernik_2025.pdf" download>Descargar CV</a>
+          <a class="btn btn-primary" href="#portafolio">Ver proyectos</a>
+          <a class="btn btn-ghost" href="#contacto">Contacto</a>
+          <a class="btn btn-ghost" href="CV_Tomas_Cernik_2026.pdf" download>⬇ CV</a>
         </div>
       </div>
-      <div class="avatar" aria-hidden="true">
-       <img src="Imagen de WhatsApp 2023-04-14 a las 16.51.46.jpg" alt="Foto de Tomás Cernik">
+      <div class="avatar-wrap">
+        <img src="Imagen de WhatsApp 2023-04-14 a las 16.51.46.jpg" alt="Foto de Tomás Cernik">
+      </div>
     </div>
   </section>
-
-  <!-- ===== SOBRE MÍ ===== -->
+  <hr class="section-divider">
+  <section id="ofrezco" class="container">
+    <div class="section-label">Propuesta de valor</div>
+    <h2 class="title">Qué ofrezco</h2>
+    <div class="offer-grid" data-reveal>
+      <div class="offer-card" style="--accent-color: var(--primary)">
+        <div class="offer-icon">⚙️</div>
+        <h3>Desarrollo Back-End sólido</h3>
+        <p>APIs REST bien estructuradas, lógica de negocio clara y bases de datos relacionales optimizadas. Trabajo con PHP, Java, Node.js y C# .NET, siempre con foco en escalabilidad y mantenibilidad.</p>
+      </div>
+      <div class="offer-card" style="--accent-color: var(--accent)">
+        <div class="offer-icon">🎨</div>
+        <h3>Interfaces funcionales y limpias</h3>
+        <p>Front-end con HTML5, CSS3 y JavaScript moderno. Priorizando accesibilidad, rendimiento y una experiencia de usuario intuitiva. Sin dependencias innecesarias cuando el código nativo alcanza.</p>
+      </div>
+      <div class="offer-card" style="--accent-color: var(--gold)">
+        <div class="offer-icon">🤖</div>
+        <h3>Integración de Inteligencia Artificial</h3>
+        <p>Uso práctico de la API de OpenAI, entrenamiento supervisado con RLHF y modelos de Machine Learning aplicados. Puedo integrar capacidades de IA en tus productos de forma concreta y útil.</p>
+      </div>
+      <div class="offer-card" style="--accent-color: #f87171">
+        <div class="offer-icon">📦</div>
+        <h3>Sistemas de gestión a medida</h3>
+        <p>Desarrollo de CRMs, paneles administrativos y sistemas de seguimiento adaptados a las necesidades reales del negocio, con estadísticas, filtros avanzados y flujos de trabajo eficientes.</p>
+      </div>
+      <div class="offer-card" style="--accent-color: #a78bfa">
+        <div class="offer-icon">🔄</div>
+        <h3>Buenas prácticas y trabajo en equipo</h3>
+        <p>Trabajo con Git, metodologías ágiles (Scrum), arquitectura MVC y principios de diseño orientado a objetos. Me adapto rápido a equipos y contextos nuevos.</p>
+      </div>
+      <div class="offer-card" style="--accent-color: #34d399">
+        <div class="offer-icon">🚀</div>
+        <h3>Entrega y despliegue real</h3>
+        <p>No solo código: proyectos funcionando en producción, con dominio, hosting o plataformas como Vercel. Sé llevar una idea desde el concepto hasta el usuario final.</p>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
   <section id="sobre" class="container">
+    <div class="section-label">Acerca de mí</div>
     <h2 class="title">Sobre mí</h2>
-    <div class="grid">
-      <article class="card sm-6" data-reveal>
-        <p>Técnico en <strong>Desarrollo Web</strong> recibido en la <strong>Universidad de La Matanza</strong>. Aprendí a trabajar en equipo y a gestionar proyectos. Por mi cuenta, desarrollé un <strong>CRM</strong> con estadísticas, filtros y manejo de datos.</p>
-        <p class="muted"><strong>Ahora</strong> estoy sumando proyectos full‑stack llevando a cabo buenas prácticas y mejorando mi inglés.
-        </p>
-      </article>
-      <aside class="card sm-6" data-reveal>
-        <h3 style="margin-top:0">Lo que me define</h3>
-  <ul>
-  <li>Claridad y limpieza en el código</li>
-  <li>Curiosidad por IA aplicada a productos</li>
-  <li>Aprendizaje constante y adaptación</li>
-  <li>Orientación a la resolución de problemas</li>
-  <li>Trabajo en equipo y colaboración</li>
-  <li>Atención al detalle y buenas prácticas</li>
-  </ul>
-      </aside>
-    </div>
-  </section>
-
-  <!-- ===== PORTAFOLIO ===== -->
-  <section id="portafolio" class="container">
-    <h2 class="title">Portafolio</h2>
-    <p class="lead">Algunos proyectos recientes. Puedo compartir más repos al contacto.</p>
-    <div class="projects" data-reveal>
-      <!-- Proyecto 1 -->
-      <article class="project">
-        <div class="content">
-          <h3 style="margin:.2rem 0 .3rem">CRM Essenza Divina</h3>
-          <p class="muted">Gestión de ventas, estadísticas de productos y vendedores, múltiples filtros de búsqueda.</p>
-          <div class="chips">
-            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">Mustache</span>
-          </div>
-          <div class="links">
-            <a class="link" href="https://github.com/tomycernik/EssenzaCRM.git" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-      </article>
-      <article class="project">
-        <div class="content">
-          <h3 style="margin:.2rem 0 .3rem">Oniria</h3>
-          <p class="muted">Proyecto final de tecnicatura. Plataforma web para explorar el mundo interior a través del registro de sueños, con espacio personal, patrones revelados y mensajes que acompañan cada viaje nocturno.</p>
-          <div class="chips">
-            <span class="chip">React</span><span class="chip">Node</span><span class="chip">Supabase</span><span class="chip">TypeScript</span><span class="chip">Jest</span><span class="chip">Express</span>
-          </div>
-          <div class="links">
-            <a class="link" href="https://github.com/PedroOsnaghi/oniria-api.git" target="_blank" rel="noopener">GitHub</a>
-            <a class="link" href="https://app.oniria3d.com.ar/" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #8f5cff, #b983ff); color: #fff;">Visitar</a>
-          </div>
-        </div>
-      </article>
-      <!-- Proyecto 2 -->
-      <article class="project">
-        <div class="content">
-          <h3 style="margin:.2rem 0 .3rem">API para clasificación de Emails</h3>
-          <p class="muted">Clasifica emails según urgencia y spam; foco en endpoints limpios y documentación.</p>
-          <div class="chips">
-            <span class="chip">C#</span><span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span>
-          </div>
-          <div class="links">
-            <a class="link" href="https://github.com/Ignacio26fr/Tasky_webProyecto.git" target="_blank" rel="noopener">GitHub</a>
-          </div>
-          
-        </div>
-      </article>
-      <!-- Proyecto 3 -->
-      <article class="project">
-        <div class="content">
-          <h3 style="margin:.2rem 0 .3rem">E‑Commerce de apuntes estudiantiles</h3>
-          <p class="muted">Compra/venta de apuntes con moneda virtual y panel de administración.</p>
-          <div class="chips">
-            <span class="chip">Java</span><span class="chip">Spring</span><span class="chip">Thymeleaf</span>
-          </div>
-          <div class="links">
-            <a class="link" href="https://github.com/Gaby137/TallerWeb1.git" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-      </article>
-      <!-- Proyecto 4 -->
-      <article class="project">
-        <div class="content">
-          <h3 style="margin:.2rem 0 .3rem">Gestión de Productos (Angular + Node)</h3>
-          <p class="muted">CRUD, búsqueda y filtrado. Buenas prácticas de modularización.</p>
-          <div class="chips">
-            <span class="chip">Angular</span><span class="chip">Node.js</span><span class="chip">Express</span>
-          </div>
-          <div class="links">
-            <a class="link" href="https://github.com/clVBisitari/herrashopv19.git" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ===== EDUCACIÓN ===== -->
-  <section id="educacion" class="container">
-    <h2 class="title">Educación</h2>
-    <div class="card" data-reveal>
-      <div class="timeline">
-          <div class="edu">
-            <h4>Tecnicatura en Desarrollo Web</h4>
-            <small>Universidad de La Matanza · 2022 — 2025 · <span style='color:var(--primary);font-weight:bold;'>Finalizada</span></small>
-            <div style="margin-top:8px;">
-              <label style="font-size:.95rem;color:var(--muted);">Progreso:</label>
-              <div style="background:#222;border-radius:8px;overflow:hidden;height:18px;width:100%;margin-top:4px;box-shadow:0 1px 4px rgba(0,0,0,.12);">
-                <div style="width:100%;height:100%;background:linear-gradient(90deg,var(--primary),#38bdf8);text-align:right;padding-right:8px;color:#fff;font-weight:600;line-height:18px;">100%</div>
-              </div>
-            </div>
-          </div>
-          <div class="edu">
-            <h4>Licenciatura en Gestión de las Tecnologías</h4>
-            <small>Próximo inicio · 2026</small>
-          </div>
+    <div class="about-grid" data-reveal>
+      <div class="info-card">
+        <h3>Perfil</h3>
+        <p>Desarrollador Web Fullstack egresado de la <strong>Universidad Nacional de La Matanza</strong>. Trabajé en proyectos propios y colaborativos que van desde CRMs en PHP hasta sistemas de gestión con Angular, Node.js y TypeScript.</p>
+        <p class="muted" style="font-size:.9rem">Por mi cuenta, exploré el uso de la API de OpenAI, entrenamiento de modelos con RLHF y Machine Learning aplicado a datos reales. Me interesa construir software que resuelva problemas concretos.</p>
+      </div>
+      <div class="info-card">
+        <h3>Lo que me define</h3>
+        <ul class="trait-list">
+          <li>Claridad y limpieza en el código</li>
+          <li>Curiosidad activa por IA y sus aplicaciones reales</li>
+          <li>Aprendizaje constante y adaptación rápida</li>
+          <li>Orientación a resultados y resolución de problemas</li>
+          <li>Trabajo en equipo y comunicación directa</li>
+          <li>Atención al detalle y buenas prácticas</li>
+        </ul>
       </div>
     </div>
   </section>
-
-  <!-- ===== SKILLS ===== -->
+  <hr class="section-divider">
+  <section id="portafolio" class="container">
+    <div class="section-label">Trabajo reciente</div>
+    <h2 class="title">Portafolio</h2>
+    <p class="lead" style="margin-bottom: 2rem">Proyectos propios y colaborativos. Puedo compartir más repos al contacto.</p>
+    <div class="projects" data-reveal>
+      <article class="project-card" style="grid-column: span 1;">
+        <div class="featured-banner">⭐ Proyecto destacado</div>
+        <div class="project-header">
+          <div class="project-badge" style="--accent-color: var(--primary); --accent-bg: var(--primary-dim); --accent-border: rgba(0,229,195,.2);">🥗 App web</div>
+          <h3>NotTupper</h3>
+        </div>
+        <p>Plataforma de venta de viandas congeladas. Los usuarios pueden registrarse, explorar el menú y realizar pedidos. El administrador carga las comidas disponibles y gestiona el registro de pedidos. Pensada para simplificar la operación de un negocio de viandas.</p>
+        <div class="chips">
+          <span class="chip">Angular</span><span class="chip">Node.js</span><span class="chip">TypeScript</span><span class="chip">Supabase</span><span class="chip">Vercel</span>
+        </div>
+        <div class="project-links">
+          <a class="plink primary" href="https://notupperapp.vercel.app/" target="_blank" rel="noopener">🚀 Visitar app</a>
+          <a class="plink" href="https://github.com/tomycernik" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="project-header">
+          <div class="project-badge" style="--accent-color: #f5c842; --accent-bg: rgba(245,200,66,.1); --accent-border: rgba(245,200,66,.2);">💼 CRM</div>
+          <h3>CRM Essenza Divina</h3>
+        </div>
+        <p>Sistema de gestión de ventas completo con estadísticas de productos y vendedores, múltiples filtros de búsqueda y seguimiento en tiempo real.</p>
+        <div class="chips">
+          <span class="chip">PHP</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Mustache</span><span class="chip">MySQL</span>
+        </div>
+        <div class="project-links">
+          <a class="plink primary" href="https://essenzadivina.page.gd/" target="_blank" rel="noopener">🌐 Visitar</a>
+          <a class="plink" href="https://github.com/tomycernik/EssenzaCRM.git" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="project-header">
+          <div class="project-badge" style="--accent-color: #a78bfa; --accent-bg: rgba(167,139,250,.1); --accent-border: rgba(167,139,250,.2);">🌙 Proyecto final</div>
+          <h3>Oniria</h3>
+        </div>
+        <p>Plataforma web para explorar el mundo interior a través del registro de sueños, con espacio personal, patrones revelados y mensajes que acompañan cada viaje nocturno.</p>
+        <div class="chips">
+          <span class="chip">React</span><span class="chip">Node</span><span class="chip">Supabase</span><span class="chip">TypeScript</span><span class="chip">Jest</span><span class="chip">Express</span>
+        </div>
+        <div class="project-links">
+          <a class="plink purple" href="https://app.oniria3d.com.ar/" target="_blank" rel="noopener">🔮 Visitar</a>
+          <a class="plink" href="https://github.com/PedroOsnaghi/oniria-api.git" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="project-header">
+          <div class="project-badge" style="--accent-color: var(--accent); --accent-bg: var(--accent-dim); --accent-border: rgba(91,138,245,.2);">📧 API</div>
+          <h3>API para clasificación de Emails</h3>
+        </div>
+        <p>Clasifica emails según urgencia y spam; foco en endpoints limpios y documentación clara. Buenas prácticas de diseño de APIs REST.</p>
+        <div class="chips">
+          <span class="chip">C#</span><span class="chip">.NET</span><span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span>
+        </div>
+        <div class="project-links">
+          <a class="plink" href="https://github.com/Ignacio26fr/Tasky_webProyecto.git" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="project-header">
+          <div class="project-badge" style="--accent-color: #34d399; --accent-bg: rgba(52,211,153,.1); --accent-border: rgba(52,211,153,.2);">🛒 E-Commerce</div>
+          <h3>E‑Commerce de apuntes estudiantiles</h3>
+        </div>
+        <p>Compra/venta de apuntes con moneda virtual y panel de administración completo. Proyecto universitario con arquitectura MVC.</p>
+        <div class="chips">
+          <span class="chip">Java</span><span class="chip">Spring</span><span class="chip">Thymeleaf</span><span class="chip">MySQL</span>
+        </div>
+        <div class="project-links">
+          <a class="plink" href="https://github.com/Gaby137/TallerWeb1.git" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="project-header">
+          <div class="project-badge" style="--accent-color: #f87171; --accent-bg: rgba(248,113,113,.1); --accent-border: rgba(248,113,113,.2);">📦 CRUD</div>
+          <h3>Gestión de Productos</h3>
+        </div>
+        <p>CRUD, búsqueda y filtrado avanzado. Buenas prácticas de modularización en Angular con back-end Node.js.</p>
+        <div class="chips">
+          <span class="chip">Angular</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">TypeScript</span>
+        </div>
+        <div class="project-links">
+          <a class="plink" href="https://github.com/clVBisitari/herrashopv19.git" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </article>
+    </div>
+  </section>
+  <hr class="section-divider">
+  <section id="ia" class="container">
+    <div class="section-label">Tecnologías emergentes</div>
+    <h2 class="title">Inteligencia Artificial</h2>
+    <div class="ai-section" data-reveal>
+      <h3>🤖 Trabajo con IA de forma práctica</h3>
+      <p style="color:var(--muted); max-width: 680px; margin: 0;">
+        Más allá del desarrollo web tradicional, tengo experiencia concreta trabajando con modelos de lenguaje y Machine Learning. Utilicé la <strong style="color:var(--text)">API de OpenAI</strong> para entrenar y optimizar respuestas en proyectos propios, apliqué técnicas de <strong style="color:var(--text)">RLHF (Reinforcement Learning from Human Feedback)</strong> y entrenamiento supervisado, y trabajé con modelos de ML aplicados al análisis de datos reales. No es solo teoría: integré estas herramientas en flujos de trabajo concretos.
+      </p>
+      <div class="ai-skills">
+        <span class="ai-tag">OpenAI API</span>
+        <span class="ai-tag">RLHF</span>
+        <span class="ai-tag">Entrenamiento supervisado</span>
+        <span class="ai-tag">Machine Learning aplicado</span>
+        <span class="ai-tag">Fine-tuning de modelos</span>
+        <span class="ai-tag">Prompting avanzado</span>
+        <span class="ai-tag">Análisis de datos con ML</span>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+  <section id="educacion" class="container">
+    <div class="section-label">Formación</div>
+    <h2 class="title">Educación</h2>
+    <div class="info-card" style="max-width: 640px;" data-reveal>
+      <div class="timeline">
+        <div class="edu">
+          <h4>Tecnicatura en Desarrollo Web</h4>
+          <small>Universidad Nacional de La Matanza · 2021 — 2025 · <span style="color:var(--primary);font-weight:700;">Finalizada</span></small>
+          <div class="edu-bar" style="margin-top:.6rem">
+            <div class="edu-bar-fill" style="width:100%"></div>
+          </div>
+        </div>
+        <div class="edu">
+          <h4>Bachiller en Economía</h4>
+          <small>Escuela Secundaria Santo Tomás de Aquino · 2016 — 2021</small>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
   <section id="skills" class="container">
+    <div class="section-label">Tech stack</div>
     <h2 class="title">Habilidades</h2>
     <div class="skills-grid" data-reveal>
-      <div class="card skills-card">
+      <div class="skills-card">
         <h4>Lenguajes</h4>
         <div class="skill-tags">
           <span class="tag">Java</span><span class="tag">PHP</span><span class="tag">SQL</span><span class="tag">C#</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Node.js</span>
         </div>
       </div>
-      <div class="card skills-card">
+      <div class="skills-card">
         <h4>Frameworks</h4>
         <div class="skill-tags">
-          <span class="tag">Spring</span><span class="tag">Hibernate</span><span class="tag">Thymeleaf</span><span class="tag">Angular</span><span class="tag">Express.js</span>
+          <span class="tag">Spring</span><span class="tag">Hibernate</span><span class="tag">Thymeleaf</span><span class="tag">Angular</span><span class="tag">Express.js</span><span class="tag">.NET</span>
         </div>
       </div>
-      <div class="card skills-card">
+      <div class="skills-card">
+        <h4>Bases de datos</h4>
+        <div class="skill-tags">
+          <span class="tag">MySQL</span><span class="tag">MariaDB</span><span class="tag">SQL Server</span><span class="tag">Supabase</span>
+        </div>
+      </div>
+      <div class="skills-card">
+        <h4>IA & ML</h4>
+        <div class="skill-tags">
+          <span class="tag">OpenAI API</span><span class="tag">RLHF</span><span class="tag">Machine Learning</span><span class="tag">Fine-tuning</span>
+        </div>
+      </div>
+      <div class="skills-card">
         <h4>Metodologías</h4>
         <div class="skill-tags">
-          <span class="tag">Scrum</span><span class="tag">MVC</span><span class="tag">Diseño escalable</span><span class="tag">APIs REST</span>
+          <span class="tag">Scrum</span><span class="tag">MVC</span><span class="tag">OOP</span><span class="tag">TDD</span><span class="tag">APIs REST</span><span class="tag">Git</span>
         </div>
       </div>
-      <div class="card skills-card">
-        <h4>Software</h4>
+      <div class="skills-card">
+        <h4>Herramientas</h4>
         <div class="skill-tags">
-          <span class="tag">IntelliJ IDEA</span><span class="tag">PhpStorm</span><span class="tag">PhpMyAdmin</span><span class="tag">MySQL Workbench</span><span class="tag">MariaDB</span><span class="tag">Visual Studio</span><span class="tag">VS Code</span><span class="tag">Excel</span><span class="tag">Draw.io</span>
+          <span class="tag">IntelliJ IDEA</span><span class="tag">PhpStorm</span><span class="tag">VS Code</span><span class="tag">MySQL Workbench</span><span class="tag">Vercel</span><span class="tag">Draw.io</span>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- ===== CONTACTO ===== -->
+  <hr class="section-divider">
   <section id="contacto" class="container">
+    <div class="section-label">Hablemos</div>
     <h2 class="title">Contacto</h2>
-    <div class="card" data-reveal>
-      <div class="contact">
-        <p class="lead">¿Te interesa charlar? Escribime.</p>
+    <div class="contact-wrap" data-reveal>
+      <div class="contact-text">
+        <h3>¿Tenés un proyecto en mente?</h3>
+        <p class="muted">Estoy disponible para proyectos freelance, posiciones de desarrollo y colaboraciones. No dudes en escribirme.</p>
         <div class="socials">
           <a class="pill" href="mailto:cerniktomy@gmail.com" aria-label="Email">✉️ <span>cerniktomy@gmail.com</span></a>
-          <a class="pill" href="https://github.com/tomycernik" target="_blank" rel="noopener" aria-label="GitHub">🐱 <span>GitHub</span></a>
+          <a class="pill" href="https://github.com/tomycernik" target="_blank" rel="noopener" aria-label="GitHub">🐙 <span>github.com/tomycernik</span></a>
           <a class="pill" href="https://www.linkedin.com/in/tomas-cernik-51371b250" target="_blank" rel="noopener" aria-label="LinkedIn">💼 <span>LinkedIn</span></a>
         </div>
       </div>
+      <div class="contact-cta">
+        <p>¿Querés ver mi CV completo?</p>
+        <a class="btn btn-primary" href="CV_Tomas_Cernik_2026.pdf" download>⬇ Descargar CV</a>
+        <p style="margin-top: 1.2rem;">Tiempo de respuesta estimado: <strong style="color:var(--primary)">menos de 24 hs</strong></p>
+      </div>
     </div>
   </section>
-
-  <footer class="container">Hecho con ❤️ por Tomás — Última actualización 2025</footer>
-
+  <footer class="container">
+    Hecho con ❤️ por Tomás Cernik — 2026
+  </footer>
   <script>
-    // === Toggle tema ===
+  
     const themeBtn = document.getElementById('themeBtn');
     const userPref = localStorage.getItem('theme');
     if (userPref === 'light') document.body.classList.add('light');
@@ -395,16 +656,14 @@ section#inicio.container {
       localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
     });
 
-    // === Menú móvil ===
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
     menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-    // === Reveal on scroll ===
+    
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'))
-    }, { threshold: 0.12 });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
     document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
   </script>
 </body>
