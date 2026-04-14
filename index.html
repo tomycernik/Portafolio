@@ -105,10 +105,10 @@
     .section-label::before { content: ""; display: block; width: 24px; height: 2px; background: var(--primary); border-radius: 2px; }
     .title {
       font-family: "Syne", sans-serif;
-      font-size: clamp(2rem, 2.5vw + 1rem, 3.2rem);
+      font-size: clamp(1.8rem, 2vw + .9rem, 2.6rem);
       font-weight: 800;
       line-height: 1.1;
-      letter-spacing: -.03em;
+      letter-spacing: -.04em;
       margin: 0 0 2.5rem;
     }
     .lead { font-size: 1.1rem; color: var(--muted); }
@@ -125,7 +125,7 @@
     .hero h1 {
       font-family: "Syne", sans-serif;
       font-size: clamp(2.5rem, 5vw + 1rem, 5rem);
-      font-weight: 800; letter-spacing: -.04em;
+      font-weight: 800; letter-spacing: -.07em;
       line-height: 1.05; margin: 0 0 .5rem;
     }
     .hero h1 em { font-style: normal; color: var(--primary); }
@@ -458,8 +458,22 @@
     <h2 class="title">Portafolio</h2>
     <p class="lead" style="margin-bottom: 2rem">Proyectos propios y colaborativos. Puedo compartir más repos al contacto.</p>
     <div class="projects" data-reveal>
-      <article class="project-card" style="grid-column: span 1;">
-        <div class="featured-banner">⭐ Proyecto destacado</div>
+      <article class="project-card">
+        <div class="project-header">
+          <div class="project-badge" style="--accent-color: #a78bfa; --accent-bg: rgba(167,139,250,.1); --accent-border: rgba(167,139,250,.2);">🌙 Proyecto final</div>
+          <h3>Oniria</h3>
+        </div>
+        <p>Plataforma web para explorar el mundo interior a través del registro de sueños, con espacio personal, patrones revelados y mensajes que acompañan cada viaje nocturno.</p>
+        <div class="chips">
+          <span class="chip">React</span><span class="chip">Node</span><span class="chip">Supabase</span><span class="chip">TypeScript</span><span class="chip">Jest</span><span class="chip">Express</span>
+        </div>
+        <div class="project-links">
+          <a class="plink purple" href="https://app.oniria3d.com.ar/" target="_blank" rel="noopener">🔮 Visitar</a>
+          <a class="plink" href="https://github.com/PedroOsnaghi/oniria-app" target="_blank" rel="noopener">GitHub App</a>
+          <a class="plink" href="https://github.com/PedroOsnaghi/oniria-api" target="_blank" rel="noopener">GitHub API</a>
+        </div>
+      </article>
+      <article class="project-card">
         <div class="project-header">
           <div class="project-badge" style="--accent-color: var(--primary); --accent-bg: var(--primary-dim); --accent-border: rgba(0,229,195,.2);">🥗 App web</div>
           <h3>NotTupper</h3>
@@ -470,7 +484,8 @@
         </div>
         <div class="project-links">
           <a class="plink primary" href="https://notupperapp.vercel.app/" target="_blank" rel="noopener">🚀 Visitar app</a>
-          <a class="plink" href="https://github.com/tomycernik" target="_blank" rel="noopener">GitHub</a>
+          <a class="plink" href="https://github.com/tomycernik/notupper-app" target="_blank" rel="noopener">GitHub App</a>
+          <a class="plink" href="https://github.com/tomycernik/notupper-api" target="_blank" rel="noopener">GitHub API</a>
         </div>
       </article>
       <article class="project-card">
@@ -489,16 +504,16 @@
       </article>
       <article class="project-card">
         <div class="project-header">
-          <div class="project-badge" style="--accent-color: #a78bfa; --accent-bg: rgba(167,139,250,.1); --accent-border: rgba(167,139,250,.2);">🌙 Proyecto final</div>
-          <h3>Oniria</h3>
+          <div class="project-badge" style="--accent-color: #fb923c; --accent-bg: rgba(251,146,60,.1); --accent-border: rgba(251,146,60,.2);">🚚 Landing page</div>
+          <h3>PyC Logística</h3>
         </div>
-        <p>Plataforma web para explorar el mundo interior a través del registro de sueños, con espacio personal, patrones revelados y mensajes que acompañan cada viaje nocturno.</p>
+        <p>Landing page para empresa de logística real. Incluye presentación de servicios, ubicación, contacto directo por WhatsApp y formulario de cotización con campos de peso, medidas y destino del envío.</p>
         <div class="chips">
-          <span class="chip">React</span><span class="chip">Node</span><span class="chip">Supabase</span><span class="chip">TypeScript</span><span class="chip">Jest</span><span class="chip">Express</span>
+          <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
         </div>
         <div class="project-links">
-          <a class="plink purple" href="https://app.oniria3d.com.ar/" target="_blank" rel="noopener">🔮 Visitar</a>
-          <a class="plink" href="https://github.com/PedroOsnaghi/oniria-api.git" target="_blank" rel="noopener">GitHub</a>
+          <a class="plink" style="background: linear-gradient(135deg, #ea580c, #fb923c); color: #fff; border-color: transparent;" href="https://pyclogistica.com.ar/" target="_blank" rel="noopener">🌐 Visitar</a>
+          <a class="plink" href="https://github.com/tomycernik/pyc-logistica" target="_blank" rel="noopener">GitHub</a>
         </div>
       </article>
       <article class="project-card">
@@ -525,19 +540,6 @@
         </div>
         <div class="project-links">
           <a class="plink" href="https://github.com/Gaby137/TallerWeb1.git" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </article>
-      <article class="project-card">
-        <div class="project-header">
-          <div class="project-badge" style="--accent-color: #f87171; --accent-bg: rgba(248,113,113,.1); --accent-border: rgba(248,113,113,.2);">📦 CRUD</div>
-          <h3>Gestión de Productos</h3>
-        </div>
-        <p>CRUD, búsqueda y filtrado avanzado. Buenas prácticas de modularización en Angular con back-end Node.js.</p>
-        <div class="chips">
-          <span class="chip">Angular</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">TypeScript</span>
-        </div>
-        <div class="project-links">
-          <a class="plink" href="https://github.com/clVBisitari/herrashopv19.git" target="_blank" rel="noopener">GitHub</a>
         </div>
       </article>
     </div>
@@ -577,7 +579,7 @@
         </div>
         <div class="edu">
           <h4>Bachiller en Economía</h4>
-          <small>Escuela Secundaria Santo Tomás de Aquino · 2016 — 2021</small>
+          <small>Escuela Secundaria Santo Tomás de Aquino · 2016 — 2021 · <span style="color:var(--primary);font-weight:700;">Finalizado</span></small>
         </div>
       </div>
     </div>
@@ -634,7 +636,7 @@
         <h3>¿Tenés un proyecto en mente?</h3>
         <p class="muted">Estoy disponible para proyectos freelance, posiciones de desarrollo y colaboraciones. No dudes en escribirme.</p>
         <div class="socials">
-          <a class="pill" href="mailto:cerniktomy@gmail.com" aria-label="Email">✉️ <span>cerniktomy@gmail.com</span></a>
+          <a class="pill" href="/cdn-cgi/l/email-protection#92f1f7e0fcfbf9e6fdffebd2f5fff3fbfebcf1fdff" aria-label="Email">✉️ <span><span class="__cf_email__" data-cfemail="1b787e697572706f7476625b7c767a727735787476">[email&#160;protected]</span></span></a>
           <a class="pill" href="https://github.com/tomycernik" target="_blank" rel="noopener" aria-label="GitHub">🐙 <span>github.com/tomycernik</span></a>
           <a class="pill" href="https://www.linkedin.com/in/tomas-cernik-51371b250" target="_blank" rel="noopener" aria-label="LinkedIn">💼 <span>LinkedIn</span></a>
         </div>
@@ -649,7 +651,7 @@
   <footer class="container">
     Hecho con ❤️ por Tomás Cernik — 2026
   </footer>
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     
     const themeBtn = document.getElementById('themeBtn');
     const userPref = localStorage.getItem('theme');
@@ -665,7 +667,12 @@
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
     
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
     }, { threshold: 0.1 });
     document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
   </script>
