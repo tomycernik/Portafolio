@@ -218,6 +218,11 @@
     .trait-list li::before { content: "→"; color: var(--primary); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
     
     .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+    .digital-work {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 760px;
+    }
     .project-card {
       background: var(--bg-card); border: 1px solid var(--card-border);
       border-radius: var(--radius); overflow: hidden;
@@ -428,6 +433,7 @@
         <a href="#ofrezco">Servicios</a>
         <a href="#sobre">Sobre mí</a>
         <a href="#portafolio">Portafolio</a>
+        <a href="#trabajos-digitales">Contenido IA</a>
         <a href="#educacion">Educación</a>
         <a href="#skills">Habilidades</a>
         <a href="#contacto">Contacto</a>
@@ -661,6 +667,34 @@
         </div>
         <div class="project-links">
           <a class="plink" href="https://github.com/Gaby137/TallerWeb1.git" target="_blank" rel="noopener">Ver código</a>
+        </div>
+      </article>
+    </div>
+  </section>
+  <hr class="section-divider">
+  <section id="trabajos-digitales" class="container">
+    <div class="section-label">IA y contenido</div>
+    <h2 class="title">Otros trabajos digitales</h2>
+    <p class="lead" style="margin-bottom: 2rem">Además del desarrollo web, también aplico herramientas de IA para crear contenido visual y comunicar mejor servicios reales.</p>
+    <div class="digital-work" data-reveal>
+      <article class="project-card">
+        <figure class="project-shot">
+          <img src="./assets/projects/preventus-instagram.png" alt="Captura del Instagram de Preventus Centro Médico">
+        </figure>
+        <div class="project-header">
+          <div class="project-badge" style="--accent-color: #f0a7d7; --accent-bg: rgba(240,167,215,.1); --accent-border: rgba(240,167,215,.24);">🧠 Contenido con IA</div>
+          <h3>Preventus Centro Médico</h3>
+        </div>
+        <p>Gestión y creación de contenido visual para Instagram de un centro médico, con apoyo de herramientas de IA y una línea estética consistente.</p>
+        <ul class="project-list">
+          <li><strong>Resuelve:</strong> comunica servicios médicos de forma clara, visual y ordenada para pacientes.</li>
+          <li><strong>Incluye:</strong> generación de piezas, adaptación de mensajes, organización del feed e identidad visual para redes.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip">IA generativa</span><span class="chip">Contenido visual</span><span class="chip">Instagram</span><span class="chip">Branding</span><span class="chip">Comunicación digital</span>
+        </div>
+        <div class="project-links">
+          <a class="plink" href="https://www.instagram.com/preventuscentromedico/" target="_blank" rel="noopener">Ver Instagram</a>
         </div>
       </article>
     </div>
